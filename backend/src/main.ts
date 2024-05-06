@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   let swaggerConfig = new DocumentBuilder()
     .setTitle('RedComp')
     .setDescription('API description')
