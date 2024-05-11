@@ -39,8 +39,13 @@ export class UserService {
       HttpStatus.NOT_FOUND,
     );
   }
-  findAll() {
-    return `This action returns all user`;
+
+  async findAll() {
+    const users = await this.userRespository.find();
+    if (users) {
+      return users;
+    }
+    throw new HttpException('Users is empty', HttpStatus.NOT_FOUND);
   }
 
   findOne(id: number) {

@@ -12,6 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
+    AuthModule,
     UserModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
@@ -25,7 +26,6 @@ import { OrdersModule } from './orders/orders.module';
       }),
     }),
     DatabaseModule,
-    AuthModule,
     OrdersModule,
   ],
   controllers: [AppController],

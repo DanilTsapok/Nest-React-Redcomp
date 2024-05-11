@@ -22,8 +22,9 @@ class User {
   @Column()
   @Exclude()
   public password: string;
-  @Exclude()
+
   @Column({ type: 'enum', array: true, enum: Role, default: [Role.User] })
+  @Exclude()
   public roles: Role[];
 }
 export default User;

@@ -7,6 +7,7 @@ import TokenPayload from './tokenPayload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import PostgresErrorCode from 'src/database/postgresErrorCode.enum';
+import User from 'src/user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,7 @@ export class AuthService {
         ...registrationData,
         password: hashedPassword,
       });
+
       createUser.password = undefined;
       return createUser;
     } catch (error) {
@@ -36,12 +38,24 @@ export class AuthService {
   }
 
   public getCookieWithJwtAccessToken(userId: number) {
+    const token = this.getToken(userId);
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}`;
+  }
+
+  public async getUserFromAuthenticationToken(token: string): Promise<User> {
+    const decodedToken = this.jwtService.verify(token);
+    console.log(decodedToken);
+    const userId = (decodedToken as TokenPayload).userId;
+    return await this.usersService.getById(userId);
+  }
+
+  public getToken(userId: number) {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
       expiresIn: `${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`,
     });
-    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}`;
+    return token;
   }
 
   public async verifyPassword(plainTextPassword: string, hashedPassword) {
@@ -76,6 +90,4 @@ export class AuthService {
       'Refresh=; HttpOnly; Path=/; Max-Age=0',
     ];
   }
-
-  public async getUserFromAuthenticationToken() {}
 }

@@ -29,7 +29,7 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
+  findAllUsers() {
     return this.userService.findAll();
   }
 
@@ -44,7 +44,7 @@ export class UserController {
   }
 
   @UseGuards(RoleGuard(Role.Admin))
-  @Delete('user/:id')
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
   }
