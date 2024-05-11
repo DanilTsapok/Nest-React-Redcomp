@@ -1,7 +1,7 @@
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import Role from 'src/auth/role.enum';
-import RoleGuard from 'src/auth/role.guard';
+
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

@@ -11,11 +11,15 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import RoleGuard from 'src/auth/role.guard';
 import Role from 'src/auth/role.enum';
+import JwtAuthGuard from 'src/auth/jwt-auth.guard';
+
 @ApiTags('user')
 @Controller('user')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

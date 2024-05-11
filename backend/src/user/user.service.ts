@@ -29,6 +29,16 @@ export class UserService {
     return newUser;
   }
 
+  async getById(userId: number) {
+    const user = await this.userRespository.findOne({ where: { id: userId } });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
   findAll() {
     return `This action returns all user`;
   }
