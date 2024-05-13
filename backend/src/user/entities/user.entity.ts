@@ -8,6 +8,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @ApiTags('user')
 class User {
   @PrimaryGeneratedColumn()
+  @ApiProperty({ example: '1', description: 'Your name' })
   public id: number;
 
   @ApiProperty({ example: 'David', description: 'Your name' })

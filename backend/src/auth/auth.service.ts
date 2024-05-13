@@ -26,6 +26,7 @@ export class AuthService {
       });
 
       createUser.password = undefined;
+      createUser.id = undefined;
       return createUser;
     } catch (error) {
       throw error?.code === PostgresErrorCode.UniqueViolation

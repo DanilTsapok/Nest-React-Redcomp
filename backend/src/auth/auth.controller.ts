@@ -33,6 +33,7 @@ export class AuthController {
   @Get('me')
   @ApiBearerAuth()
   @UseGuards(LocalAuthenticationGuard)
+  @ApiBody({ type: User, description: 'Example registration data.' })
   async getCurrentAuthUser(@Req() request: RequestWithUser) {
     const { user } = request;
     console.log(user);
