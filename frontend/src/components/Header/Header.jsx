@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import style from "./header-style.module.scss";
 import Logo from "../../assets/svg/Logo.svg";
 import { useTranslation } from "react-i18next";
+import SwitchDarkMode from "../SwitchDarkMode/SwitchDarkMode";
 function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const [t, i18n] = useTranslation("global");
-  const day = currentTime.getDate();
-  const dayOfWeek = currentTime.getDay();
-  const month = currentTime.getMonth();
-  const year = currentTime.getFullYear();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -19,7 +16,14 @@ function Header() {
 
     return () => clearInterval(intervalId);
   }, []);
-
+  const day = currentTime.getDate();
+  const dayOfWeek = currentTime.getDay();
+  const month = currentTime.getMonth();
+  const year = currentTime.getFullYear();
+  const time = currentTime.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   const months = [
     `${t("Month.January")}`,
     `${t("Month.February")}`,
@@ -43,6 +47,7 @@ function Header() {
     `${t("Days.Saturday")}`,
     `${t("Days.Sunday")}`,
   ];
+
   const formatedDate = `${day} ${months[month]} ${year} ${
     dayOfWeek === 0 ? week[6] : week[dayOfWeek - 1]
   }`;
@@ -56,7 +61,10 @@ function Header() {
         </div>
       </div>
       <div className={style.headerRightSide}>
+        <p>{time}</p>
+        <button className={style.btnLogin}>Logout</button>
         <p>{formatedDate}</p>
+        <SwitchDarkMode />
       </div>
     </header>
   );
