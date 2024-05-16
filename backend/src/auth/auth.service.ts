@@ -40,7 +40,7 @@ export class AuthService {
 
   public getCookieWithJwtAccessToken(userId: number) {
     const token = this.getToken(userId);
-    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}`;
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`;
   }
 
   public async getUserFromAuthenticationToken(token: string): Promise<User> {

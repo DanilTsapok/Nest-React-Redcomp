@@ -3,11 +3,13 @@ import style from "./header-style.module.scss";
 import Logo from "../../assets/svg/Logo.svg";
 import { useTranslation } from "react-i18next";
 import SwitchDarkMode from "../SwitchDarkMode/SwitchDarkMode";
+import axios from "axios";
+import TimeIcon from "../../assets/svg/Time.svg";
+
 function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
-
   const [t, i18n] = useTranslation("global");
-
+  const [btnLogoutActive, setBtLogoutAcitve] = useState(false);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime((prevTime) => (prevTime = new Date()));
@@ -51,18 +53,34 @@ function Header() {
   const formatedDate = `${day} ${months[month]} ${year} ${
     dayOfWeek === 0 ? week[6] : week[dayOfWeek - 1]
   }`;
+  const logoutUser = async () => {
+    try {
+      await axios.post("http://localhost:4000/auth/log-out", null, {
+        withCredentials: true,
+      });
+    } catch (error) {
+      // console.error("Error logging out:", error);
+    }
+  };
 
   return (
     <header className={style.header}>
       <div className={style.headerLeftSide}>
         <div className={style.logo}>
           <img src={Logo}></img>
-          <h1>RedComp</h1>
+          <h1>
+            <span>Red</span>Comp
+          </h1>
         </div>
       </div>
       <div className={style.headerRightSide}>
-        <p>{time}</p>
-        <button className={style.btnLogin}>Logout</button>
+        <p style={{ display: "flex", gap: 5 }}>
+          <img style={{ width: 20 }} src={TimeIcon} alt="" />
+          {time}
+        </p>
+        <button className={style.btnLogout} onClick={() => logoutUser()}>
+          Logout
+        </button>
         <p>{formatedDate}</p>
         <SwitchDarkMode />
       </div>
