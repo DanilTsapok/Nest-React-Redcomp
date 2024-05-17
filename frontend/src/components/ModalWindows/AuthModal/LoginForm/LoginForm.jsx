@@ -4,13 +4,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import style from "../auth-style.module.scss";
+import Logo from "../../../../assets/svg/Logo.svg";
 function LoginForm() {
-  const {
-    loginFormActive,
-    setSwapLoginRegister,
-    SetNotificationStateLogin,
-    notificationStateLogin,
-  } = useStore();
+  const { loginFormActive, setSwapLoginRegister } = useStore();
 
   // const getCookie = (name) => {
   //   const value = `; ${document.cookie}`;
@@ -51,12 +47,24 @@ function LoginForm() {
         method="post"
         onSubmit={formik.handleSubmit}
       >
+        <div className={style.logo}>
+          <img src={Logo}></img>
+          <h1>
+            <span>Red</span>Comp
+          </h1>
+        </div>
         <div className={style.formTitle}>
           <h1>Login</h1>
         </div>
         <div className={style.formInfoBlock}>
           <div className={style.emailSection}>
-            <img src="" alt="" />
+            <img
+              width="25"
+              height="25"
+              src="https://img.icons8.com/laces/64/FA5252/new-post.png"
+              alt="new-post"
+            />
+
             <input
               type="text"
               name="email"
@@ -64,6 +72,7 @@ function LoginForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
+              placeholder="**********@gmail.com"
             />
             <label
               className={
@@ -88,7 +97,6 @@ function LoginForm() {
             ) : null}
           </div>
           <div className={style.passwordSection}>
-            <img src="" alt="" />
             <input
               type="password"
               name="password"
@@ -119,9 +127,30 @@ function LoginForm() {
               </p>
             ) : null}
           </div>
-          <button type="Submit">Login</button>
+        </div>
+        <div className={style.btnLogin}>
+          <button className={style.cssbuttons_io_button}>
+            Login
+            <div className={style.icon}>
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+          </button>
         </div>
       </form>
+      <div>
+        <img src="" alt="" />
+      </div>
     </div>
   );
 }

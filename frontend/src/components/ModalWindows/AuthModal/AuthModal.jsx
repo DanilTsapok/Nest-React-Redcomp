@@ -4,6 +4,7 @@ import CloseIcon from "../../../assets/svg/Close.svg";
 import LoginForm from "./LoginForm/LoginForm";
 import RegisterForm from "./RegisterForm/RegisterForm";
 import style from "./auth-style.module.scss";
+import backImage from "../../../assets/svg/Login.svg";
 function AuthModal() {
   const { authModalState, setAuthModalDisActive } = useStore();
   useEffect(() => {
@@ -30,8 +31,13 @@ function AuthModal() {
         <div className={style.btnClose}>
           <img src={CloseIcon} onClick={() => setAuthModalDisActive()} alt="" />
         </div>
-        <LoginForm />
-        <RegisterForm />
+        <div className={style.loginImage}>
+          <img src={backImage} alt="" />
+        </div>
+        <div className={style.Form}>
+          <LoginForm />
+          <RegisterForm />
+        </div>
       </div>
     </div>
   );
