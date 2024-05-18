@@ -19,14 +19,6 @@ export class Address {
   @Column()
   public city: string;
 
-  @ApiProperty({ example: 'NY', description: 'State' })
-  @Column()
-  public state: string;
-
-  @ApiProperty({ example: '10001', description: 'Postal code' })
-  @Column()
-  public postalCode: string;
-
   @ApiProperty({ example: 'USA', description: 'Country' })
   @Column()
   public country: string;

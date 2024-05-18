@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Product } from 'src/product/entities/product.entity';
-import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Category {
   @PrimaryGeneratedColumn('uuid')
   @ApiProperty({ example: '1', description: 'Category ID' })
