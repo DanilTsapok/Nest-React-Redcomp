@@ -3,8 +3,8 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
+  const app = await NestFactory.create(AppModule, { cors: true });
+  // app.enableCors();
   let swaggerConfig = new DocumentBuilder()
     .setTitle('RedComp')
     .setDescription('API description')
@@ -16,4 +16,5 @@ async function bootstrap() {
 
   await app.listen(4000);
 }
+
 bootstrap();

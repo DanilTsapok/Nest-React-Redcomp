@@ -1,15 +1,18 @@
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { Address } from 'src/address/entities/address.entity';
 import Role from 'src/auth/role.enum';
+import { Order } from 'src/order/entities/order.entity';
+import { Review } from 'src/review/entities/review.entity';
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ApiTags('user')
 class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   @ApiProperty({ example: '1', description: 'Your name' })
-  public id: number;
+  public id: string;
 
   @ApiProperty({ example: 'David', description: 'Your name' })
   @Column()
@@ -27,5 +30,17 @@ class User {
   @Column({ type: 'enum', array: true, enum: Role, default: [Role.User] })
   @Exclude()
   public roles: Role[];
+
+  @Column({ default: false })
+  public isBanned: boolean;
+
+  @OneToMany(() => Order, (order) => order.user)
+  public orders: Order[];
+
+  @OneToMany(() => Review, (review) => review.user)
+  public reviews: Review[];
+
+  @OneToMany(() => Address, (address) => address.user)
+  public addresses: Address[];
 }
 export default User;

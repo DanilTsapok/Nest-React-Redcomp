@@ -38,20 +38,25 @@ export class AuthService {
     }
   }
 
-  public getCookieWithJwtAccessToken(userId: number) {
-    const token = this.getToken(userId);
+  public getCookieWithJwtAccessToken(user: User) {
+    const token = this.getToken(user);
     return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`;
   }
 
   public async getUserFromAuthenticationToken(token: string): Promise<User> {
     const decodedToken = this.jwtService.verify(token);
-    console.log(decodedToken);
     const userId = (decodedToken as TokenPayload).userId;
     return await this.usersService.getById(userId);
   }
 
-  public getToken(userId: number) {
-    const payload: TokenPayload = { userId };
+  public getToken(user: User) {
+    const payload: TokenPayload = {
+      userId: user.id,
+      email: user.email,
+      username: user.name,
+      roles: user.roles,
+      isBanned: user.isBanned,
+    };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
       expiresIn: `${this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`,

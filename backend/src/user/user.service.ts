@@ -29,9 +29,10 @@ export class UserService {
     return newUser;
   }
 
-  async getById(userId: number) {
+  async getById(userId: string) {
     const user = await this.userRespository.findOne({ where: { id: userId } });
     if (user) {
+      user.password = undefined;
       return user;
     }
     throw new HttpException(

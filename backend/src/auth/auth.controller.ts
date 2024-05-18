@@ -13,6 +13,8 @@ import {
   HttpCode,
   UseGuards,
   Put,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import CreateUserDto from 'src/user/dto/create-user.dto';
@@ -24,24 +26,23 @@ import RegisterDto from './dto/register.dto';
 import LogInDto from './dto/login.dto';
 import { LocalAuthenticationGuard } from './localAuth.guard';
 import User from 'src/user/entities/user.entity';
+import { UserService } from 'src/user/user.service';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
   @Get('me')
   @ApiBearerAuth()
-  @UseGuards(LocalAuthenticationGuard)
-  @ApiBody({ type: User, description: 'Example registration data.' })
-  async getCurrentAuthUser(@Req() request: RequestWithUser) {
-    const { user } = request;
-    console.log(user);
-    const token = await this.authService.getToken(user.id);
-    const currentUser =
-      await this.authService.getUserFromAuthenticationToken(token);
-    console.log(currentUser);
-    return currentUser;
+  // @UseGuards(LocalAuthenticationGuard)
+  // @ApiBody({ type: User, description: 'Example registration data.' })
+  async getCurrentAuthUser(@Param('id') userId: string) {
+    return await this.userService.getById(userId);
+    // return await this.authService.getUserFromAuthenticationToken(token);
   }
 
   @Post('register')
@@ -64,17 +65,21 @@ export class AuthController {
   @ApiBody({ type: LogInDto, description: 'Example login data' })
   async login(@Req() request: RequestWithUser, @Res() response: Response) {
     const { user } = request;
-    const token = { access: this.authService.getToken(user.id) };
-    const cookie = this.authService.getCookieWithJwtAccessToken(user.id);
+    // console.log(user);
+    const token = { access: this.authService.getToken(user) };
+    const cookie = this.authService.getCookieWithJwtAccessToken(user);
     response.setHeader('Set-cookie', cookie);
-    return response.send(token);
+    const loginUser = { ...user, token };
+    return response.send(loginUser);
   }
 
   @Post('log-out')
-  @HttpCode(205)
-  @ApiBearerAuth()
-  async logOut(@Req() request: RequestWithUser, @Res() response: Response) {
+  // @HttpCode(200)
+  @UseGuards(JwtAuthGuard)
+  @UseGuards(LocalAuthenticationGuard)
+  // @ApiBearerAuth()
+  async logOut(@Req() request: RequestWithUser) {
     request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogout());
-    return response.send('Logout');
+    throw new HttpException('User log-out', HttpStatus.NOT_FOUND);
   }
 }
