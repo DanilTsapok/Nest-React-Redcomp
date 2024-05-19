@@ -7,7 +7,7 @@ import TokenPayload from './tokenPayload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import PostgresErrorCode from 'src/database/postgresErrorCode.enum';
-import User from 'src/user/entities/user.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class AuthService {

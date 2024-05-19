@@ -1,6 +1,7 @@
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import { Address } from 'src/address/entities/address.entity';
+
 import Role from 'src/auth/role.enum';
 import { Order } from 'src/order/entities/order.entity';
 import { Review } from 'src/review/entities/review.entity';
@@ -8,8 +9,7 @@ import { Review } from 'src/review/entities/review.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-@ApiTags('user')
-class User {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   @ApiProperty({ example: '1', description: 'Your name' })
   public id: string;
@@ -43,4 +43,3 @@ class User {
   @OneToMany(() => Address, (address) => address.user)
   public addresses: Address[];
 }
-export default User;

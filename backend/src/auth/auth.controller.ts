@@ -25,7 +25,7 @@ import { Response, response } from 'express';
 import RegisterDto from './dto/register.dto';
 import LogInDto from './dto/login.dto';
 import { LocalAuthenticationGuard } from './localAuth.guard';
-import User from 'src/user/entities/user.entity';
+import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 
 @ApiTags('auth')
@@ -74,10 +74,10 @@ export class AuthController {
   }
 
   @Post('log-out')
-  // @HttpCode(200)
+  @HttpCode(200)
   @UseGuards(JwtAuthGuard)
   @UseGuards(LocalAuthenticationGuard)
-  // @ApiBearerAuth()
+  @ApiBearerAuth()
   async logOut(@Req() request: RequestWithUser) {
     request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogout());
     throw new HttpException('User log-out', HttpStatus.NOT_FOUND);

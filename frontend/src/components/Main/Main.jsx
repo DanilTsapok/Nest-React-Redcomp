@@ -3,6 +3,7 @@ import AuthModal from "../ModalWindows/AuthModal/AuthModal";
 import HeaderSection from "./Sections/HeaderSection/HeaderSection";
 import Footer from "../Footer/Footer";
 import TakeControlSection from "./Sections/TakeControlSection/TakeControlSection";
+import CategorySection from "./Sections/CategorySection/CategorySection";
 
 function Main() {
   return (
@@ -17,7 +18,7 @@ function Main() {
       >
         <HeaderSection />
         <TakeControlSection />
-        <></>
+        <CategorySection />
         <AuthModal />
       </div>
       <Footer />
