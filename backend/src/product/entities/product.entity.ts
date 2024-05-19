@@ -21,17 +21,19 @@ export class Product {
   @Column()
   public name: string;
 
+  @Column()
   @ApiProperty({
     example: 'A high-end laptop',
     description: 'Product description',
   })
   public description: string;
+
   @ApiProperty({ example: 20000, description: 'Product price' })
   @Column('decimal')
   public price: number;
 
   @ManyToOne(() => Category, (category) => category.products)
-  public category: Category[];
+  public category: Category;
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
   public orderItems: OrderItem[];

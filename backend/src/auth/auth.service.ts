@@ -24,7 +24,6 @@ export class AuthService {
         ...registrationData,
         password: hashedPassword,
       });
-
       createUser.password = undefined;
       createUser.id = undefined;
       return createUser;

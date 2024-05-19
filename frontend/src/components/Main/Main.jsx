@@ -17,6 +17,7 @@ function Main() {
       >
         <HeaderSection />
         <TakeControlSection />
+        <></>
         <AuthModal />
       </div>
       <Footer />

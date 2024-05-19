@@ -4,31 +4,52 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
+import { Category } from 'src/category/entities/category.entity';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product)
     private productsRepository: Repository<Product>,
+    @InjectRepository(Category)
+    private categoryRepository: Repository<Category>,
   ) {}
 
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  async create(createProductDto: CreateProductDto): Promise<Product> {
+    const { categoryId, ...productData } = createProductDto;
+    const category = await this.categoryRepository.findOneBy({
+      id: categoryId,
+    });
+    if (!category) {
+      throw new NotFoundException(`Category with id ${categoryId} not found`);
+    }
+    const newProduct = this.productsRepository.create({
+      ...productData,
+      category: category,
+    });
+    return this.productsRepository.save(newProduct);
   }
 
-  findAll(): Promise<Product[]> {
-    return this.productsRepository.find();
+  async findAll(): Promise<Product[]> {
+    const products = this.productsRepository.find({ relations: ['category'] });
+    if (!products) {
+      throw new NotFoundException(`Products are not found`);
+    }
+    return products;
   }
 
   async findOneProduct(id: string): Promise<Product> {
-    return this.productsRepository.findOneBy({ id });
+    return await this.productsRepository.findOneBy({ id });
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    const selectProduct = await this.findOneProduct(id);
+    Object.assign(selectProduct, updateProductDto);
+    return this.productsRepository.save(selectProduct);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: string) {
+    const product = await this.findOneProduct(id);
+    await this.productsRepository.remove(product);
   }
 }

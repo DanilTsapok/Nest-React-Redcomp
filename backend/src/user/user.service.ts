@@ -49,15 +49,14 @@ export class UserService {
     throw new HttpException('Users is empty', HttpStatus.NOT_FOUND);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const selectUser = await this.getById(id);
+    Object.assign(selectUser, updateUserDto);
+    return this.userRespository.save(selectUser);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const userDelete = await this.getById(id);
+    await this.userRespository.remove(userDelete);
   }
 }
