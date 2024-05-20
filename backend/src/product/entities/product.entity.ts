@@ -28,6 +28,12 @@ export class Product {
   })
   public description: string;
 
+  @Column()
+  @ApiProperty({
+    description: 'Product description',
+  })
+  public imgUrl: string;
+
   @ApiProperty({ example: 20000, description: 'Product price' })
   @Column('decimal')
   public price: number;

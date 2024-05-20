@@ -12,6 +12,9 @@ export class Category {
   @Column()
   public name: string;
 
+  @ApiProperty({ description: 'categoryImage' })
+  @Column()
+  public categoryImage: string;
   @OneToMany(() => Product, (product) => product.category)
   public products: Product[];
 }

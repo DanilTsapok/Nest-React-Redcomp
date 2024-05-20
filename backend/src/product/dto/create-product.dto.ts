@@ -20,7 +20,13 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   description: string;
-
+  @ApiProperty({
+    example: 'High-performance laptop',
+    description: 'The description of the product',
+  })
+  @IsString()
+  @IsNotEmpty()
+  imgUrl: string;
   @ApiProperty({ example: 1500, description: 'The price of the product' })
   @IsNumber()
   @IsNotEmpty()

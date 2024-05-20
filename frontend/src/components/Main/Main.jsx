@@ -23,11 +23,11 @@ function Main() {
         <Navbar />
         <div className={style.contentBody}>
           <HeaderSection />
+          <CategorySection />
           <InfiniteSlide />
           {/* <TakeControlSection /> */}
-          <CategorySection />
           <AuthModal />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </>

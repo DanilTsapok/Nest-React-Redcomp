@@ -22,7 +22,7 @@ function HeaderSection() {
               </p>
             </div>
           </div>
-          {activeBtnLogin ? (
+          {!currentUser ? (
             // <button
             //   className={style.btnLogin}
             //   onClick={() => setAuthModalActive()}

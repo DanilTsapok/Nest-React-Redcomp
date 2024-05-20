@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import SwitchDarkMode from "../SwitchDarkMode/SwitchDarkMode";
 import axios from "axios";
 import TimeIcon from "../../assets/svg/Time.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -64,12 +65,14 @@ function Header() {
   return (
     <header className={style.header}>
       <div className={style.headerLeftSide}>
-        <div className={style.logo}>
-          <img src={Logo}></img>
-          <h1>
-            <span>Red</span>Comp
-          </h1>
-        </div>
+        <Link to={"/"} style={{ textDecoration: "none" }}>
+          <div className={style.logo}>
+            <img src={Logo}></img>
+            <h1>
+              <span>Red</span>Comp
+            </h1>
+          </div>
+        </Link>
       </div>
       <div className={style.headerRightSide}>
         <div className={style.btnLogin}>

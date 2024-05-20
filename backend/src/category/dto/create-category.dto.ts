@@ -6,4 +6,9 @@ export class CreateCategoryDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+  @ApiProperty({ description: 'The image for category' })
+  @IsString()
+  @IsNotEmpty()
+  categoryImage: string;
 }
