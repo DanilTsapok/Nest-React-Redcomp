@@ -7,6 +7,7 @@ function ProductsPage() {
   const [categoryName, setCategoryName] = useState();
   const [products, setProducts] = useState([]);
   useEffect(() => {
+    window.scrollTo(0, 0);
     const handleProducts = async () => {
       const response = await axios.get(
         `http://localhost:4000/category/${categoryId}/products`

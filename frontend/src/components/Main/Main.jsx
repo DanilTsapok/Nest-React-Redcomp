@@ -20,7 +20,7 @@ function Main() {
           // height: "100%",
         }}
       >
-        <Navbar />
+        {/* <Navbar /> */}
         <div className={style.contentBody}>
           <HeaderSection />
           <CategorySection />
