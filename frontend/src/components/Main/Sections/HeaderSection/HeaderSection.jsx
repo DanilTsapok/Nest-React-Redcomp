@@ -4,7 +4,8 @@ import useStore from "../../../../store/useStore";
 import style from "./headerSection-style.module.scss";
 // import LogoIcon from "../../../../assets/svg/R Key.svg";
 function HeaderSection() {
-  const { activeBtnLogin, authModalState, setAuthModalActive } = useStore();
+  const { activeBtnLogin, authModalState, setAuthModalActive, currentUser } =
+    useStore();
   console.log(authModalState);
   return (
     <>
@@ -53,6 +54,7 @@ function HeaderSection() {
           ) : (
             <button
               className={style.btnLogin}
+              style={{ display: "none" }}
               onClick={() => setAuthModalActive()}
             >
               Login

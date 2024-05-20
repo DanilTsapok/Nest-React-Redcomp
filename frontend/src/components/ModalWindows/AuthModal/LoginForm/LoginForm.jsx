@@ -6,7 +6,12 @@ import axios from "axios";
 import style from "../auth-style.module.scss";
 import Logo from "../../../../assets/svg/Logo.svg";
 function LoginForm() {
-  const { loginFormActive, setSwapLoginRegister } = useStore();
+  const {
+    loginFormActive,
+    setSwapLoginRegister,
+    setCurrentUser,
+    setActiveBtnLogin,
+  } = useStore();
 
   // const getCookie = (name) => {
   //   const value = `; ${document.cookie}`;
@@ -30,7 +35,9 @@ function LoginForm() {
           email: values.email,
           password: values.password,
         });
-        console.log(response);
+        console.log(response.data);
+        setCurrentUser(response.data);
+        setActiveBtnLogin();
         if (response.status === 200) {
           console.log("goodLogin");
         }

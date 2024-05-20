@@ -1,8 +1,12 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
+  // Login user
+  currentUser: localStorage.getItem("currentUser"),
+  setCurrentUser: (state) => set({ currentUser: state }),
   // Login Btn
   activeBtnLogin: true,
+  setActiveBtnLogin: () => set({ activeBtnLogin: false }),
   // Modal windows states
   authModalState: false,
   loginFormActive: true,

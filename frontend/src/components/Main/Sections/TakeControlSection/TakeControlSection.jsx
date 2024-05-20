@@ -5,7 +5,7 @@ function TakeControlSection() {
   return (
     <div className={style.takeControlSectionBody}>
       <div className={style.controlSectionBodyTitle}></div>
-      <img src={PSImg} alt="" />
+      {/* <img src={PSImg} alt="" /> */}
     </div>
   );
 }
