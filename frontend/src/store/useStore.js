@@ -11,6 +11,9 @@ const useStore = create((set) => ({
   authModalState: false,
   loginFormActive: true,
   registerFormActive: false,
+  addCategoryModalActive: false,
+  setAddCategoryModalActive: () => set({ addCategoryModalActive: true }),
+  setAddCategoryModalDisActive: () => set({ addCategoryModalActive: false }),
   // Change DarkMode
   isChecked: localStorage.getItem("selectedTheme") === "light",
   switchCheck: () => set((state) => ({ isChecked: !state.isChecked })),

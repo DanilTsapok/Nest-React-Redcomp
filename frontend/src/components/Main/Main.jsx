@@ -7,6 +7,7 @@ import CategorySection from "./Sections/CategorySection/CategorySection";
 import Navbar from "../Navbar/Navbar";
 import style from "./main-style.module.scss";
 import InfiniteSlide from "./Sections/InfiniteSlide/infiniteSlide";
+import AddCategoryModal from "../ModalWindows/AddCategoryModal/AddCategoryModal";
 function Main() {
   return (
     <>
@@ -27,6 +28,7 @@ function Main() {
           <InfiniteSlide />
           <TakeControlSection />
           <AuthModal />
+          <AddCategoryModal />
           {/* <Footer /> */}
         </div>
       </div>

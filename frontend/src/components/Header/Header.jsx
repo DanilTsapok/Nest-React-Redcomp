@@ -7,11 +7,12 @@ import axios from "axios";
 import TimeIcon from "../../assets/svg/Time.svg";
 import { Link } from "react-router-dom";
 import useStore from "../../store/useStore";
-
+import ProfileIcon from "../../assets/svg/Profile.svg";
 function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [t, i18n] = useTranslation("global");
   const [btnLogoutActive, setBtLogoutAcitve] = useState(false);
+  const [countNotification, setCountNotification] = useState();
   const { currentUser } = useStore();
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -89,6 +90,40 @@ function Header() {
 
               <div className={style.text}>Logout</div>
             </button>
+          </div>
+        ) : (
+          <></>
+        )}
+        {currentUser ? (
+          <div style={{ display: "flex" }}>
+            <p>
+              <Link
+                to="/profile"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "10px",
+                  textDecoration: "none",
+                }}
+              >
+                <img
+                  width="35"
+                  height="64"
+                  src={ProfileIcon}
+                  alt="user-male-circle"
+                />
+                {currentUser.name}
+              </Link>
+            </p>
+            <div
+              className={style.notification}
+              data-content={countNotification}
+            >
+              <div class={style.bell_container}>
+                <div class={style.bell}></div>
+              </div>
+            </div>
           </div>
         ) : (
           <></>

@@ -6,7 +6,7 @@ import useStore from "../../../../store/useStore";
 import Logo from "../../../../assets/svg/Logo.svg";
 
 function CategorySection() {
-  const { currentUser } = useStore();
+  const { currentUser, setAddCategoryModalActive } = useStore();
   const [categoryData, setCategoryData] = useState([]);
   const observer = useRef(null);
   console.log(currentUser);
@@ -37,6 +37,9 @@ function CategorySection() {
     };
   }, [categoryData]);
 
+  const DeleteCategory = async (idCategory) => {
+    await axios.delete(`http://localhost:4000/category/delete/${idCategory}`);
+  };
   return (
     <>
       <div className={style.CategoryHeader}>
@@ -61,7 +64,25 @@ function CategorySection() {
                   style={{ textDecoration: "none" }}
                 >
                   <div className={`${style.card}`} style={{ "--delay": delay }}>
+                    {currentUser ? (
+                      currentUser.roles.includes("Admin") ? (
+                        <button onClick={() => DeleteCategory(categoryItem.id)}>
+                          <img
+                            width="25"
+                            height="25"
+                            src="https://img.icons8.com/parakeet/48/trash.png"
+                            alt="trash"
+                          />
+                        </button>
+                      ) : (
+                        <></>
+                      )
+                    ) : (
+                      <></>
+                    )}
+
                     <img
+                      className={style.img}
                       src={categoryItem.categoryImage}
                       alt={categoryItem.name}
                     />
@@ -75,7 +96,10 @@ function CategorySection() {
           )}
           {currentUser ? (
             currentUser.roles.includes("Admin") ? (
-              <div className={style.card}>
+              <div
+                className={style.card}
+                onClick={() => setAddCategoryModalActive()}
+              >
                 <p>Add Category</p>
               </div>
             ) : (

@@ -14,6 +14,7 @@ function Router() {
           path="/category/:categoryId/products"
           element={<ProductsPage />}
         />
+        <Route path="/profile" element={<></>}></Route>
       </Route>
     </Routes>
   );

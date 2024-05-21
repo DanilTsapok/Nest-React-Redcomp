@@ -51,11 +51,6 @@ function Footer() {
                 <button>subscribe</button>
               </div>
             </div>
-            <div className={style.footerContactInfo}>
-              <h4>Contact us</h4>
-              <div></div>
-              <div></div>
-            </div>
           </div>
         </div>
       </div>

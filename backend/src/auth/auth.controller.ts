@@ -65,10 +65,10 @@ export class AuthController {
   @ApiBody({ type: LogInDto, description: 'Example login data' })
   async login(@Req() request: RequestWithUser, @Res() response: Response) {
     const { user } = request;
-    // console.log(user);
-    const token = { access: this.authService.getToken(user) };
+
     const cookie = this.authService.getCookieWithJwtAccessToken(user);
     response.setHeader('Set-cookie', cookie);
+    const token = { access: this.authService.getToken(user) };
     const loginUser = { ...user, token };
     return response.send(loginUser);
   }
