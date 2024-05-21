@@ -25,7 +25,7 @@ function Main() {
           <HeaderSection />
           <CategorySection />
           <InfiniteSlide />
-          {/* <TakeControlSection /> */}
+          <TakeControlSection />
           <AuthModal />
           {/* <Footer /> */}
         </div>

@@ -75,11 +75,11 @@ export class AuthController {
 
   @Post('log-out')
   @HttpCode(200)
-  @UseGuards(JwtAuthGuard)
-  @UseGuards(LocalAuthenticationGuard)
-  @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard)
+  // @UseGuards(LocalAuthenticationGuard)
+  // @ApiBearerAuth()
   async logOut(@Req() request: RequestWithUser) {
     request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogout());
-    throw new HttpException('User log-out', HttpStatus.NOT_FOUND);
+    return new HttpException('User log-out', HttpStatus.NOT_FOUND);
   }
 }

@@ -9,7 +9,7 @@ function CategorySection() {
   const { currentUser } = useStore();
   const [categoryData, setCategoryData] = useState([]);
   const observer = useRef(null);
-
+  console.log(currentUser);
   useEffect(() => {
     const handleCategories = async () => {
       const response = await axios.get("http://localhost:4000/category");
@@ -27,7 +27,6 @@ function CategorySection() {
         }
       });
     });
-
     const cards = document.querySelectorAll(`.${style.card}`);
     cards.forEach((card) => {
       observer.current.observe(card);
@@ -71,6 +70,17 @@ function CategorySection() {
                 </Link>
               );
             })
+          ) : (
+            <></>
+          )}
+          {currentUser ? (
+            currentUser.roles.includes("Admin") ? (
+              <div className={style.card}>
+                <p>Add Category</p>
+              </div>
+            ) : (
+              <></>
+            )
           ) : (
             <></>
           )}
