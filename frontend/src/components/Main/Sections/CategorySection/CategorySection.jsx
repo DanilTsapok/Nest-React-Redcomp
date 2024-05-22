@@ -4,9 +4,11 @@ import style from "./categorystyle.module.scss";
 import { Link } from "react-router-dom";
 import useStore from "../../../../store/useStore";
 import Logo from "../../../../assets/svg/Logo.svg";
+import AddEditCategoryModal from "../../../ModalWindows/AddEditModal/AddEditProductModal";
 
 function CategorySection() {
-  const { currentUser, setAddCategoryModalActive } = useStore();
+  const { currentUser, setAddCategoryModalActive, setEditCategoryModalActive } =
+    useStore();
   const [categoryData, setCategoryData] = useState([]);
   const observer = useRef(null);
   console.log(currentUser);
@@ -67,14 +69,26 @@ function CategorySection() {
                   <div className={`${style.card}`} style={{ "--delay": delay }}>
                     {currentUser ? (
                       currentUser.roles.includes("Admin") ? (
-                        <button onClick={() => DeleteCategory(categoryItem.id)}>
-                          <img
-                            width="25"
-                            height="25"
-                            src="https://img.icons8.com/parakeet/48/trash.png"
-                            alt="trash"
-                          />
-                        </button>
+                        <div className={style.AdminPos}>
+                          <button
+                            onClick={() => DeleteCategory(categoryItem.id)}
+                          >
+                            <img
+                              width="25"
+                              height="25"
+                              src="https://img.icons8.com/parakeet/48/trash.png"
+                              alt="trash"
+                            />
+                          </button>
+                          {/* <button onClick={() => setEditCategoryModalActive()}>
+                            <img
+                              width="25"
+                              height="25"
+                              src="https://img.icons8.com/emoji/48/pencil-emoji.png"
+                              alt="trash"
+                            />
+                          </button> */}
+                        </div>
                       ) : (
                         <></>
                       )

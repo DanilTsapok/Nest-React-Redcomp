@@ -41,7 +41,7 @@
   }
   h1 {
     position: absolute;
-    z-index: 999;
+    z-index: 998;
     top: 20%;
     font-size: 100px;
     transform: translateX(20%);
@@ -112,11 +112,13 @@
 
 .card {
   width: 300px;
-  height: 400px;
+  height: calc(100% - 200px);
   background: var(--color2);
   position: relative;
   display: flex;
-  // place-content: center;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
   padding-top: 20px;
   place-items: center;
   overflow: hidden;
@@ -160,22 +162,7 @@
     margin-bottom: 40px;
     z-index: 1;
   }
-  button {
-    border: none;
-    border: 2px solid red;
-    background-color: transparent;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    position: relative;
 
-    z-index: 1;
-    cursor: pointer;
-    margin-bottom: 10px;
-    &:hover {
-      box-shadow: 0px 0px 10px red;
-    }
-  }
   p {
     z-index: 1;
     color: white;
@@ -223,5 +210,59 @@
   // }
   &:hover {
     transform: scale(1.1);
+  }
+}
+.AdminPos {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  button:first-child {
+    border: none;
+    border: 2px solid red;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    position: relative;
+
+    z-index: 1;
+    cursor: pointer;
+    margin-bottom: 10px;
+    &:hover {
+      box-shadow: 0px 0px 10px red;
+    }
+  }
+  button:last-child {
+    border: none;
+    border: 2px solid green;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    position: relative;
+
+    z-index: 1;
+    cursor: pointer;
+    margin-bottom: 10px;
+    &:hover {
+      box-shadow: 0px 0px 10px red;
+    }
+  }
+}
+.BtnBuy {
+  width: 200px;
+
+  height: 40px;
+  z-index: 1;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  outline: none;
+  font-size: 20px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid red;
   }
 }

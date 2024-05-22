@@ -60,6 +60,7 @@ function Header() {
   const logoutUser = async () => {
     try {
       await axios.post("http://localhost:4000/auth/log-out");
+      localStorage.removeItem("currentUser");
       window.location.replace("/");
     } catch (error) {
       console.log("Error logging out:", error);

@@ -1,0 +1,179 @@
+@import url("../../darkMode/darkModestyle.scss");
+
+.settingModal {
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.5s;
+}
+.settingModalBody {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color2);
+  border-radius: 10px;
+  transform: scale(0);
+  transition: 0.5s;
+  padding: 45px;
+  position: relative;
+}
+
+.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  transform: scale(1);
+  transition: 0.5s;
+  z-index: 999;
+}
+.btnClose {
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+.changeDarkMode {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.changeLang {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.btnsChange {
+  display: flex;
+  background-color: var(--color4);
+  border-radius: 10px;
+  gap: 10px;
+}
+.disableBtn {
+  width: 50px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  &:hover {
+    color: green;
+    background-color: transparent;
+    border: 2px solid var(--color2);
+    border-radius: 10px;
+  }
+}
+.btnsChangeItem {
+  width: 50px;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid grey;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    color: green;
+    background-color: transparent;
+    border: 2px solid var(--color2);
+  }
+}
+@media (max-width: 430px) {
+  .settingModal {
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(15px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .settingsLogo {
+    display: none;
+    padding-left: 50px;
+    padding-bottom: 30px;
+    transform: scale(0.7);
+  }
+  .settingModalBody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--color1);
+    border-radius: 10px;
+    transform: scale(0);
+    transition: 0.5s;
+  }
+  .active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    transform: scale(1);
+    transition: 0.5s;
+    z-index: 999;
+  }
+  .btnClose {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    right: 10px;
+    img {
+      width: 20px;
+      cursor: pointer;
+    }
+  }
+  .changeDarkMode {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+}
+.btnBuyPrime {
+  width: 180px;
+  position: absolute;
+  bottom: 20px;
+  // height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--color2);
+  background-color: transparent;
+  color: green;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color1);
+    box-shadow: 1px 2px 3px var(--color2);
+  }
+}

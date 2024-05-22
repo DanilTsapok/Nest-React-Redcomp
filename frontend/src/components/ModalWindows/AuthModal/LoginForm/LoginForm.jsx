@@ -42,6 +42,9 @@ function LoginForm() {
         setAuthModalDisActive();
         response.status === 200 ? setNotificationText(true, "Success") : null;
         setCountNotification();
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       } catch (e) {
         setNotificationState();
         setNotificationText(false, "Wrong credentials");

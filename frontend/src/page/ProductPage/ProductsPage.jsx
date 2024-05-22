@@ -4,8 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import style from "./productsPageStyle.module.scss";
 import useStore from "../../store/useStore";
 import video from "../../assets/video2.mp4";
+import AddProductModal from "../../components/ModalWindows/AddProductModal/AddProductModal";
+import AddEditProductModal from "../../components/ModalWindows/AddEditModal/AddEditProductModal";
 function ProductsPage() {
-  const { currentUser } = useStore();
+  const { currentUser, setAddProductModalActive, setEditCategoryModalActive } =
+    useStore();
   const { categoryId } = useParams();
   const [categoryName, setCategoryName] = useState();
   const [products, setProducts] = useState([]);
@@ -28,6 +31,10 @@ function ProductsPage() {
     handleProducts();
   }, [categoryName]);
 
+  const DeleteProduct = async (idProduct) => {
+    await axios.delete(`http://localhost:4000/product/delete/${idProduct}`);
+    window.location.replace(`/category/${categoryId}/products`);
+  };
   return (
     <div className={style.ProductsBody}>
       <video src={video} loop autoPlay muted></video>
@@ -38,15 +45,15 @@ function ProductsPage() {
             console.log(productsItem);
             const delay = `${index * 0.1}s`; // Adjust the multiplier for desired delay
             return (
-              <Link
-                to={`/category/${categoryId}/products/${productsItem.id}`}
+              <div
+                className={`${style.card}`}
+                style={{ "--delay": delay }}
                 key={index}
-                style={{ textDecoration: "none" }}
               >
-                <div className={`${style.card}`} style={{ "--delay": delay }}>
-                  {currentUser ? (
-                    currentUser.roles.includes("Admin") ? (
-                      <button onClick={() => DeleteCategory(productsItem.id)}>
+                {currentUser ? (
+                  currentUser.roles.includes("Admin") ? (
+                    <div className={style.AdminPos}>
+                      <button onClick={() => DeleteProduct(productsItem.id)}>
                         <img
                           width="25"
                           height="25"
@@ -54,27 +61,83 @@ function ProductsPage() {
                           alt="trash"
                         />
                       </button>
-                    ) : (
-                      <></>
-                    )
+                      <button onClick={() => setEditCategoryModalActive()}>
+                        <img
+                          width="25"
+                          height="25"
+                          src="https://img.icons8.com/emoji/48/pencil-emoji.png"
+                          alt="trash"
+                        />
+                      </button>
+                    </div>
                   ) : (
-                    <></>
-                  )}
+                    <div
+                      className={style.AdminPos}
+                      style={{ visibility: "hidden" }}
+                    >
+                      <button onClick={() => DeleteProduct(productsItem.id)}>
+                        <img
+                          width="25"
+                          height="25"
+                          src="https://img.icons8.com/parakeet/48/trash.png"
+                          alt="trash"
+                        />
+                      </button>
+                      <button onClick={() => DeleteProduct(productsItem.id)}>
+                        <img
+                          width="25"
+                          height="25"
+                          src="https://img.icons8.com/emoji/48/pencil-emoji.png"
+                          alt="trash"
+                        />
+                      </button>
+                    </div>
+                  )
+                ) : (
+                  <></>
+                )}
 
-                  <img
-                    className={style.img}
-                    src={productsItem.imgUrl}
-                    alt={productsItem.name}
-                  />
-                  <p>{productsItem.name}</p>
-                </div>
-              </Link>
+                <img
+                  className={style.img}
+                  src={productsItem.imgUrl}
+                  alt={productsItem.name}
+                />
+                <p>{productsItem.name}</p>
+                <p>{productsItem.description}</p>
+                <p>{productsItem.price} UAH</p>
+                {currentUser ? (
+                  <button className={style.BtnBuy}>Buy</button>
+                ) : (
+                  <p>You need to login</p>
+                )}
+              </div>
             );
           })
         ) : (
           <></>
         )}
+        {currentUser ? (
+          currentUser.roles.includes("Admin") ? (
+            <div
+              className={style.card}
+              style={{
+                height: "450px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+              onClick={() => setAddProductModalActive()}
+            >
+              <p>Add Product</p>
+            </div>
+          ) : (
+            <></>
+          )
+        ) : (
+          <></>
+        )}
       </div>
+      <AddProductModal />
+      <AddEditProductModal />
     </div>
   );
 }

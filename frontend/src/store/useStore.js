@@ -2,8 +2,11 @@ import { create } from "zustand";
 
 const useStore = create((set) => ({
   // Login user
-  currentUser: localStorage.getItem("currentUser"),
-  setCurrentUser: (state) => set({ currentUser: state }),
+  currentUser: JSON.parse(localStorage.getItem("currentUser")),
+  setCurrentUser: (state) =>
+    set({
+      currentUser: localStorage.setItem("currentUser", JSON.stringify(state)),
+    }),
   // Login Btn
   activeBtnLogin: true,
   setActiveBtnLogin: () => set({ activeBtnLogin: false }),
@@ -17,6 +20,16 @@ const useStore = create((set) => ({
   addCategoryModalActive: false,
   setAddCategoryModalActive: () => set({ addCategoryModalActive: true }),
   setAddCategoryModalDisActive: () => set({ addCategoryModalActive: false }),
+
+  addProductModalActive: false,
+  setAddProductModalActive: () => set({ addProductModalActive: true }),
+  setAddProductModalDisActive: () => set({ addProductModalActive: false }),
+
+  addEditCategoryModalActive: false,
+  setEditCategoryModalActive: () => set({ addEditCategoryModalActive: true }),
+  setEditCategoryModalDisActive: () =>
+    set({ addEditCategoryModalActive: false }),
+
   // Change DarkMode
   isChecked: localStorage.getItem("selectedTheme") === "light",
   switchCheck: () => set((state) => ({ isChecked: !state.isChecked })),

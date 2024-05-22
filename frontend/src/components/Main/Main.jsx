@@ -10,6 +10,7 @@ import InfiniteSlide from "./Sections/InfiniteSlide/infiniteSlide";
 import AddCategoryModal from "../ModalWindows/AddCategoryModal/AddCategoryModal";
 import Notification from "../ModalWindows/Notification/Notification";
 import BeforeFooter from "./Sections/BeforeFooter/BeforeFooter";
+import AddEditCategoryModal from "../ModalWindows/AddEditModal/AddEditProductModal";
 function Main() {
   return (
     <>
@@ -33,6 +34,7 @@ function Main() {
           <AuthModal />
           <AddCategoryModal />
           <Notification />
+
           {/* <Footer /> */}
         </div>
       </div>
