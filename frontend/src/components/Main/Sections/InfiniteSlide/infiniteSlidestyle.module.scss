@@ -21,9 +21,9 @@
   white-space: nowrap;
   overflow: hidden;
   gap: 40px;
-
   position: relative;
   z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .infinitySlider::before {
   position: absolute;
@@ -32,7 +32,7 @@
   width: 20px;
   height: 100%;
   content: " ";
-  background: linear-gradient(270deg, transparent 0%, white 100%);
+  background: linear-gradient(270deg, transparent 0%, black 100%);
   z-index: 2;
 }
 .infinitySlider::after {
@@ -42,7 +42,7 @@
   width: 20px;
   height: 110%;
   content: " ";
-  background: linear-gradient(90deg, transparent 0%, white 100%);
+  background: linear-gradient(90deg, transparent 0%, black 100%);
   z-index: 2;
 }
 .slide {

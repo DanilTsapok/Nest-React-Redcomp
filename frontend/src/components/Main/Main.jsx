@@ -9,6 +9,7 @@ import style from "./main-style.module.scss";
 import InfiniteSlide from "./Sections/InfiniteSlide/infiniteSlide";
 import AddCategoryModal from "../ModalWindows/AddCategoryModal/AddCategoryModal";
 import Notification from "../ModalWindows/Notification/Notification";
+import BeforeFooter from "./Sections/BeforeFooter/BeforeFooter";
 function Main() {
   return (
     <>
@@ -28,6 +29,7 @@ function Main() {
           <InfiniteSlide />
           <TakeControlSection />
           <CategorySection />
+          <BeforeFooter />
           <AuthModal />
           <AddCategoryModal />
           <Notification />
