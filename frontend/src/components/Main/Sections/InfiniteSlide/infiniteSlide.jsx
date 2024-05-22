@@ -5,7 +5,7 @@ function InfiniteSlide() {
     <div className={style.Brands}>
       <div className={style.header}>
         <div className={style.Line}>
-          <h1>Brands</h1>
+          <h2>Brands</h2>
         </div>
       </div>
       <div className={style.main}>

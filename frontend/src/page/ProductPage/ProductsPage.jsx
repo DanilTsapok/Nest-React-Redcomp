@@ -6,6 +6,7 @@ import useStore from "../../store/useStore";
 import video from "../../assets/video2.mp4";
 import AddProductModal from "../../components/ModalWindows/AddProductModal/AddProductModal";
 import AddEditProductModal from "../../components/ModalWindows/AddEditModal/AddEditProductModal";
+import InfiniteSlide from "../../components/Main/Sections/InfiniteSlide/infiniteSlide";
 function ProductsPage() {
   const { currentUser, setAddProductModalActive, setEditCategoryModalActive } =
     useStore();
@@ -102,13 +103,18 @@ function ProductsPage() {
                   src={productsItem.imgUrl}
                   alt={productsItem.name}
                 />
+
                 <p>{productsItem.name}</p>
-                <p>{productsItem.description}</p>
+                {productsItem.description.split(";").map((desc, i) => (
+                  <p key={i} style={{ fontSize: 16 }}>
+                    {desc}
+                  </p>
+                ))}
                 <p>{productsItem.price} UAH</p>
                 {currentUser ? (
                   <button className={style.BtnBuy}>Buy</button>
                 ) : (
-                  <p>You need to login</p>
+                  <p style={{ margin: 20 }}>You need to login</p>
                 )}
               </div>
             );
@@ -136,6 +142,7 @@ function ProductsPage() {
           <></>
         )}
       </div>
+      <InfiniteSlide />
       <AddProductModal />
       <AddEditProductModal />
     </div>
