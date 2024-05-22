@@ -15,6 +15,7 @@ function LoginForm() {
     setNotificationStateDisabled,
     setAuthModalDisActive,
     setNotificationText,
+    setCountNotification,
   } = useStore();
 
   const formik = useFormik({
@@ -40,6 +41,7 @@ function LoginForm() {
         setTimeout(() => setNotificationStateDisabled(), 4000);
         setAuthModalDisActive();
         response.status === 200 ? setNotificationText(true, "Success") : null;
+        setCountNotification();
       } catch (e) {
         setNotificationState();
         setNotificationText(false, "Wrong credentials");

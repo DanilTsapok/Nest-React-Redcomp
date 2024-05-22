@@ -20,7 +20,9 @@ const useStore = create((set) => ({
   // Change DarkMode
   isChecked: localStorage.getItem("selectedTheme") === "light",
   switchCheck: () => set((state) => ({ isChecked: !state.isChecked })),
-
+  countNotification: 0,
+  setCountNotification: () =>
+    set((state) => ({ countNotification: state.countNotification + 1 })),
   // Auth Modal
   setAuthModalActive: () => set({ authModalState: true }),
   setAuthModalDisActive: () => set({ authModalState: false }),

@@ -1,8 +1,45 @@
 .takeControlSectionBody {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  .controlSectionBodyTitle {
+  background-color: #2a0909;
+  z-index: 800;
+  img {
+    width: 600px;
+    filter: drop-shadow(0px 0px 15px red);
+  }
+  video {
+    width: 100%;
+  }
+}
+.pcConsist {
+  width: 100%;
+  height: 100%;
+  padding: 120px;
+  display: flex;
+  justify-content: space-around;
+  .pcConfiguration {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h1 {
+      font-family: "Mogra", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 60px;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    li {
+      font-family: "Mogra", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 40px;
+      text-transform: uppercase;
+      color: white;
+    }
   }
 }

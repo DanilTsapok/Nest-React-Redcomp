@@ -26,8 +26,8 @@ function Main() {
         <div className={style.contentBody}>
           <HeaderSection />
           <InfiniteSlide />
-          <CategorySection />
           <TakeControlSection />
+          <CategorySection />
           <AuthModal />
           <AddCategoryModal />
           <Notification />

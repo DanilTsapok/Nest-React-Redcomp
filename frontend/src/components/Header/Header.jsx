@@ -12,8 +12,8 @@ function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [t, i18n] = useTranslation("global");
   const [btnLogoutActive, setBtLogoutAcitve] = useState(false);
-  const [countNotification, setCountNotification] = useState();
-  const { currentUser } = useStore();
+
+  const { currentUser, countNotification } = useStore();
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime((prevTime) => (prevTime = new Date()));
@@ -121,8 +121,8 @@ function Header() {
               className={style.notification}
               data-content={countNotification}
             >
-              <div class={style.bell_container}>
-                <div class={style.bell}></div>
+              <div className={style.bell_container}>
+                <div className={style.bell}></div>
               </div>
             </div>
           </div>

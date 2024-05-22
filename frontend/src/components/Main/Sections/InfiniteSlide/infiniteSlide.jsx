@@ -62,6 +62,11 @@ function InfiniteSlide() {
           </div>
         </div>
       </div>
+      {/* <div className={style.header}>
+        <div className={style.Line}>
+          <h1>Brands</h1>
+        </div>
+      </div> */}
     </div>
   );
 }

@@ -15,7 +15,6 @@ function HeaderSection() {
         <div className={style.mainLeftSide}>
           <div className={style.Title}>
             <div className={style.Line}></div>
-
             <div>
               <h1>
                 <span>RED</span>COMP
