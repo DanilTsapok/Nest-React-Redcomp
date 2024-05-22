@@ -11,6 +11,10 @@ function LoginForm() {
     setSwapLoginRegister,
     setCurrentUser,
     setActiveBtnLogin,
+    setNotificationState,
+    setNotificationStateDisabled,
+    setAuthModalDisActive,
+    setNotificationText,
   } = useStore();
 
   const formik = useFormik({
@@ -32,11 +36,14 @@ function LoginForm() {
         console.log(response.data);
         setCurrentUser(response.data);
         setActiveBtnLogin();
-        if (response.status === 200) {
-          console.log("goodLogin");
-        }
+        setNotificationState();
+        setTimeout(() => setNotificationStateDisabled(), 4000);
+        setAuthModalDisActive();
+        response.status === 200 ? setNotificationText(true, "Success") : null;
       } catch (e) {
-        console.log(e);
+        setNotificationState();
+        setNotificationText(false, "Wrong credentials");
+        setTimeout(() => setNotificationStateDisabled(), 4000);
       }
     },
   });

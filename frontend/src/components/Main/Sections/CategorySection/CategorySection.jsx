@@ -39,6 +39,7 @@ function CategorySection() {
 
   const DeleteCategory = async (idCategory) => {
     await axios.delete(`http://localhost:4000/category/delete/${idCategory}`);
+    window.location.replace("/");
   };
   return (
     <>

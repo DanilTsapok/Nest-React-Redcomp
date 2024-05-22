@@ -7,7 +7,13 @@ import style from "../auth-style.module.scss";
 import Logo from "../../../../assets/svg/Logo.svg";
 
 function RegisterForm() {
-  const { registerFormActive, setSwapRegisterLogin } = useStore();
+  const {
+    setNotificationState,
+    setNotificationStateDisabled,
+    registerFormActive,
+    setSwapRegisterLogin,
+    setNotificationText,
+  } = useStore();
 
   // const getCookie = (name) => {
   //   const value = `; ${document.cookie}`;
@@ -37,9 +43,15 @@ function RegisterForm() {
             password: values.password,
           }
         );
+        setNotificationState();
+        setTimeout(() => setNotificationStateDisabled(), 4000);
+        console.log(response.status);
+        response.status === 201 ? setNotificationText(true, "Success") : null;
         // console.log(response.status);
       } catch (e) {
-        console.log(e);
+        setNotificationState();
+        setNotificationText(false, "Email is exist");
+        setTimeout(() => setNotificationStateDisabled(), 4000);
       }
     },
   });

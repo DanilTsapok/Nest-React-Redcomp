@@ -8,6 +8,9 @@ const useStore = create((set) => ({
   activeBtnLogin: true,
   setActiveBtnLogin: () => set({ activeBtnLogin: false }),
   // Modal windows states
+  notificationText: { status: false, text: "", img: "" },
+  setNotificationText: (status, text, img) =>
+    set({ notificationText: { status: status, text: text, img: img } }),
   authModalState: false,
   loginFormActive: true,
   registerFormActive: false,
@@ -22,6 +25,9 @@ const useStore = create((set) => ({
   setAuthModalActive: () => set({ authModalState: true }),
   setAuthModalDisActive: () => set({ authModalState: false }),
 
+  notificationState: false,
+  setNotificationState: () => set({ notificationState: true }),
+  setNotificationStateDisabled: () => set({ notificationState: false }),
   // Swap Login form with Register form
   setSwapLoginRegister: () =>
     set(() => ({

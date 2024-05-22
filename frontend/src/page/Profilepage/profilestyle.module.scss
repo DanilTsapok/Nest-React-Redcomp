@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=K2D:wght@700&family=Kaushan+Script&family=Mogra&display=swap");
+
 .main {
   width: 100%;
   min-height: 100vh;
@@ -31,11 +33,23 @@
 }
 .ProfileBody {
   width: 400px;
-  height: 800px;
+  height: 400px;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   border: 2px solid white;
   animation: anim 0.7s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  img {
+    border: 2px solid red;
+    border-radius: 50%;
+  }
+  p {
+    color: white;
+  }
 }
 .historyOrders {
   width: 100%;
@@ -44,6 +58,13 @@
   border-radius: 10px;
   border: 2px solid white;
   animation: anim 0.7s ease-in-out;
+  padding: 20px;
+  h1 {
+    font-family: "Mogra", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    color: white;
+  }
 }
 
 @keyframes anim {

@@ -8,6 +8,7 @@ import Navbar from "../Navbar/Navbar";
 import style from "./main-style.module.scss";
 import InfiniteSlide from "./Sections/InfiniteSlide/infiniteSlide";
 import AddCategoryModal from "../ModalWindows/AddCategoryModal/AddCategoryModal";
+import Notification from "../ModalWindows/Notification/Notification";
 function Main() {
   return (
     <>
@@ -29,6 +30,7 @@ function Main() {
           <TakeControlSection />
           <AuthModal />
           <AddCategoryModal />
+          <Notification />
           {/* <Footer /> */}
         </div>
       </div>
