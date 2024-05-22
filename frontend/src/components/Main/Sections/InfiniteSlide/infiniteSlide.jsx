@@ -2,7 +2,7 @@ import React from "react";
 import style from "./infiniteSlidestyle.module.scss";
 function InfiniteSlide() {
   return (
-    <>
+    <div className={style.Brands}>
       <div className={style.header}>
         <div className={style.Line}>
           <h1>Brands</h1>
@@ -62,7 +62,7 @@ function InfiniteSlide() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

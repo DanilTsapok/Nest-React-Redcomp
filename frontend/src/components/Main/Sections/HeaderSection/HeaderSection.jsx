@@ -3,6 +3,7 @@ import useStore from "../../../../store/useStore";
 // import Logo from "../../../../assets/svg/Logo.svg";
 import style from "./headerSection-style.module.scss";
 // import LogoIcon from "../../../../assets/svg/R Key.svg";
+import video from "../../../../assets/video.mp4";
 function HeaderSection() {
   const { activeBtnLogin, authModalState, setAuthModalActive, currentUser } =
     useStore();
@@ -10,12 +11,15 @@ function HeaderSection() {
   return (
     <>
       <div className={style.headerSectionMain}>
+        <video src={video} loop autoPlay muted></video>
         <div className={style.mainLeftSide}>
           <div className={style.Title}>
             <div className={style.Line}></div>
 
             <div>
-              <h1>REDCOMP</h1>
+              <h1>
+                <span>RED</span>COMP
+              </h1>
               <p>
                 Your Tech Journey Starts with RedComp:
                 <br /> Where Innovation Meets Excellence!

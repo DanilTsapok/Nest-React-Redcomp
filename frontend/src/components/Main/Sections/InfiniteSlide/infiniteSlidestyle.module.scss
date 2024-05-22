@@ -10,6 +10,10 @@
   user-select: none;
   color: white;
 }
+.Brands {
+  position: sticky;
+  top: 10px;
+}
 .infinitySlider {
   white-space: nowrap;
   overflow: hidden;
@@ -56,7 +60,7 @@
     user-select: none;
     span {
       font-size: 40px;
-      color: lightgrey;
+      color: white;
       font-family: "Mogra", system-ui;
       font-weight: 400;
     }

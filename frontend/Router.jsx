@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./src/components/Layout/Layout";
 import App from "./src/App";
 import ProductsPage from "./src/page/ProductPage/ProductsPage";
+import Profile from "./src/page/Profilepage/Profile";
 
 function Router() {
   return (
@@ -14,7 +15,7 @@ function Router() {
           path="/category/:categoryId/products"
           element={<ProductsPage />}
         />
-        <Route path="/profile" element={<></>}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
       </Route>
     </Routes>
   );

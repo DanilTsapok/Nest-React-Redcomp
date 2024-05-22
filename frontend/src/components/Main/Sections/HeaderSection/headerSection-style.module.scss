@@ -9,7 +9,13 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../../../../assets/svg/HeaderBackgound.svg");
+  background: url("https://www.youtube.com/watch?v=IzIlR5kWU0w");
+  video {
+    position: absolute;
+    left: -200px;
+    width: 110vw;
+    height: 130%;
+  }
   .mainLeftSide {
     width: 50%;
     display: flex;
@@ -25,6 +31,7 @@
     }
     .Title {
       display: flex;
+      z-index: 999;
       h1 {
         font-family: "Mogra", system-ui;
         font-weight: 400;
@@ -32,15 +39,27 @@
         font-size: 140px;
         text-transform: uppercase;
         color: white;
+        filter: drop-shadow(0 0 5rem crimson);
         transition: 0.3s;
         user-select: none;
+        span {
+          font-family: "Mogra", system-ui;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 140px;
+          text-transform: uppercase;
+          color: red;
+
+          transition: 0.3s;
+          user-select: none;
+        }
       }
       img {
         width: 130px;
       }
 
       p {
-        color: white;
+        color: darkred;
         font-size: 20px;
       }
     }

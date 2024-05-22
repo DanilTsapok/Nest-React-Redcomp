@@ -24,8 +24,8 @@ function Main() {
         {/* <Navbar /> */}
         <div className={style.contentBody}>
           <HeaderSection />
-          <CategorySection />
           <InfiniteSlide />
+          <CategorySection />
           <TakeControlSection />
           <AuthModal />
           <AddCategoryModal />

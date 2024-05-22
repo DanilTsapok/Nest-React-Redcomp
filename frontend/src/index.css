@@ -9,7 +9,7 @@ html {
 }
 body {
   background-color: var(--color3);
-  height: 200vh;
+  /* height: 200vh; */
   /* background-color: var(--color4); */
 }
 ::-webkit-scrollbar {

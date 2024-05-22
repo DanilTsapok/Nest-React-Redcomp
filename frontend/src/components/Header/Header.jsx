@@ -105,6 +105,7 @@ function Header() {
                   alignItems: "center",
                   gap: "10px",
                   textDecoration: "none",
+                  color: "white",
                 }}
               >
                 <img
