@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import style from "./productsPageStyle.module.scss";
 import useStore from "../../store/useStore";
 import video from "../../assets/video2.mp4";
+import { Col, Image, Row, Statistic } from "antd";
 import AddProductModal from "../../components/ModalWindows/AddProductModal/AddProductModal";
 import AddEditProductModal from "../../components/ModalWindows/AddEditModal/AddEditProductModal";
 import InfiniteSlide from "../../components/Main/Sections/InfiniteSlide/infiniteSlide";
@@ -97,12 +98,15 @@ function ProductsPage() {
                 ) : (
                   <></>
                 )}
-
-                <img
-                  className={style.img}
-                  src={productsItem.imgUrl}
-                  alt={productsItem.name}
-                />
+                <div style={{ zIndex: 999, width: "100%", height: "100%" }}>
+                  <Image.PreviewGroup>
+                    <Image
+                      className={style.img}
+                      src={productsItem.imgUrl}
+                      alt={productsItem.name}
+                    />
+                  </Image.PreviewGroup>
+                </div>
 
                 <p>{productsItem.name}</p>
                 {productsItem.description.split(";").map((desc, i) => (
