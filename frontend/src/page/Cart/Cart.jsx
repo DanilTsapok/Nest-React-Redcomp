@@ -9,8 +9,9 @@ function Cart() {
   const { currentUser } = useStore();
   const [orders, setOrders] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
-  // console.log(orders);
-  console.log(orderItems);
+  console.log(orders);
+
+  // console.log(orderItems);
   // console.log(currentUser);
   useEffect(() => {
     const fetchOrders = async () => {
@@ -67,7 +68,7 @@ function Cart() {
     });
     return uniqueOrders;
   };
-
+  console.log(findUniqueOrders());
   const findUniqueOrderItem = () => {
     const uniqueOrderItems = [];
 
@@ -110,7 +111,7 @@ function Cart() {
         </div>
         <div className={style.cartOrderItem}>
           <ul>
-            {findUniqueOrderItem().map((item) => (
+            {orderItems.map((item) => (
               <li key={item.id}>
                 <img src={item.product.imgUrl} alt="" />
                 <p>Order ID: {item.order.id}</p>
