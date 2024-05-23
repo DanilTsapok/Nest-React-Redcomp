@@ -4,21 +4,34 @@ import { Repository } from 'typeorm';
 import { OrderItem } from './entities/order-item.entity';
 import { CreateOrderItemDto } from './dto/create-order-item.dto';
 import { UpdateOrderItemDto } from './dto/update-order-item.dto';
+import { Order } from 'src/order/entities/order.entity';
+import { Product } from 'src/product/entities/product.entity';
 
 @Injectable()
 export class OrderItemService {
   constructor(
     @InjectRepository(OrderItem)
     private readonly orderItemRepository: Repository<OrderItem>,
+    @InjectRepository(Order)
+    private readonly orderRepository: Repository<Order>,
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>,
   ) {}
 
   async create(createOrderItemDto: CreateOrderItemDto): Promise<OrderItem> {
-    const orderItem = this.orderItemRepository.create(createOrderItemDto);
-    return this.orderItemRepository.save(orderItem);
+    const { orderId, productId, ...orderItemData } = createOrderItemDto;
+    const order = await this.orderRepository.findOneBy({ id: orderId });
+    const product = await this.productRepository.findOneBy({ id: productId });
+    const newOrderItem = this.orderItemRepository.create({
+      ...orderItemData,
+      order: order,
+      product: product,
+    });
+    return this.orderItemRepository.save(newOrderItem);
   }
 
   async findAll(): Promise<OrderItem[]> {
-    return this.orderItemRepository.find();
+    return this.orderItemRepository.find({ relations: ['product', 'order'] });
   }
 
   async findOne(id: string): Promise<OrderItem> {
