@@ -33,17 +33,19 @@ function Cart() {
   const deleteItem = async (idOrder, idItem) => {
     try {
       await axios.delete(`http://localhost:4000/order-items/${idItem}`);
-      if (idOrder) {
-        await axios.delete(`http://localhost:4000/order/${idOrder}`);
-      }
       const updatedOrderItems = orderItems.filter((item) => item.id !== idItem);
       setOrderItems(updatedOrderItems);
+
+      if (idOrder) {
+        await axios.delete(`http://localhost:4000/order/${idOrder}`);
+        const updatedOrders = orders.filter((order) => order.id !== idOrder);
+        setOrders(updatedOrders);
+      }
     } catch (error) {
       console.error("Error deleting order item:", error);
     }
   };
 
-  // Функция для поиска уникальных заказов по идентификатору
   const findUniqueOrders = () => {
     const uniqueOrders = [];
     orders.forEach((order) => {

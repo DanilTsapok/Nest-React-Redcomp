@@ -16,7 +16,7 @@
   transition: 0.5s;
 }
 .settingModalBody {
-  width: 400px;
+  width: 800px;
   height: 500px;
   display: flex;
   align-items: center;
@@ -175,5 +175,294 @@
     cursor: pointer;
     background-color: var(--color1);
     box-shadow: 1px 2px 3px var(--color2);
+  }
+}
+.authModal {
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 999;
+}
+
+.authModalBody {
+  width: 1200px;
+  height: 700px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  // overflow: hidden;
+  background-color: var(--color2);
+  // border: 2px solid #292136;
+  border-radius: 10px;
+  transform: scale(0);
+  transition: 0.5s;
+  .loginBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+
+    transform: translateX(0);
+  }
+  .registBox {
+    width: 100%;
+    position: absolute;
+    transition: 0.5s;
+    transform: translateX(500px);
+  }
+  .loginBoxActive {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    position: absolute;
+    transform: translateX(-600px);
+  }
+  .registBoxActive {
+    width: 100%;
+    position: absolute;
+    transition: 0.5s;
+    transform: translateX(0px);
+  }
+}
+.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  transition: 0.5s;
+  z-index: 999;
+}
+.loginImage {
+  width: 100%;
+  // height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+  }
+}
+.Form {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+.formBody {
+  width: 100%;
+  height: 100%;
+  // display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.btnLogin {
+  // position: absolute;
+  // right: 20px;
+  // bottom: 20px;
+}
+.formBodyRegister {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.btnClose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+
+.btnRegister {
+  position: absolute;
+  right: 20px;
+  bottom: -100px;
+}
+.cssbuttons_io_button {
+  background: red;
+  width: 200px;
+  color: white;
+  font-family: inherit;
+  padding: 0.55em;
+  padding-left: 1.2em;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 3em;
+  margin-top: 20px;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons_io_button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em red;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons_io_button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons_io_button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: red;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+.formTitle {
+  display: flex;
+  margin-bottom: 50px;
+  h1 {
+    color: var(--color1);
+  }
+}
+.formTitleRegister {
+  display: flex;
+  margin-bottom: 40px;
+  h1 {
+    color: var(--color1);
+  }
+}
+.formInfoBlock {
+  display: flex;
+
+  flex-direction: column;
+  gap: 35px;
+}
+.categoryImageSection,
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    // width: 15px;
+    // height: 25px;
+  }
+  input {
+    width: 320px;
+    caret-color: red;
+    padding-left: 10px;
+    height: 40px;
+    font-size: 16px;
+    color: var(--color1);
+    border-radius: 5px;
+    outline: none;
+    border: 0.4px solid lightgray;
+    background-color: transparent;
+    user-select: none;
+  }
+  label {
+    position: absolute;
+    top: 50%;
+    padding: 5px;
+    left: 40px;
+    transform: translateY(-50%);
+    transition: 0.5s;
+
+    color: var(--color1);
+    // cursor: pointer;
+  }
+  input:focus ~ label {
+    transition: 0.5s;
+    left: 20px;
+    top: -2px;
+    padding: 3px;
+    background-color: var(--color2);
+  }
+  input:not(:focus) ~ label {
+    transition: 0.5s;
+    left: 20px;
+    top: -2px;
+    padding: 3px;
+    background-color: var(--color2);
+  }
+}
+.logo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 80px;
+  // margin-bottom: 80px;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  h1 {
+    padding-top: 5px;
+    font-family: "Mogra", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 40px;
+    color: var(--color1);
+    span {
+      font-family: "Mogra", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      color: red;
+      text-transform: uppercase;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+.registerLink {
+  font-size: 16px;
+  color: var(--color1);
+  span {
+    color: red;
+    cursor: pointer;
   }
 }

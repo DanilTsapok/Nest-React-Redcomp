@@ -8,10 +8,17 @@ import { Image } from "antd";
 import AddProductModal from "../../components/ModalWindows/AddProductModal/AddProductModal";
 import AddEditProductModal from "../../components/ModalWindows/AddEditModal/AddEditProductModal";
 import InfiniteSlide from "../../components/Main/Sections/InfiniteSlide/infiniteSlide";
+import Notification from "../../components/ModalWindows/Notification/Notification";
 
 function ProductsPage() {
-  const { currentUser, setAddProductModalActive, setEditCategoryModalActive } =
-    useStore();
+  const {
+    currentUser,
+    setAddProductModalActive,
+    setEditCategoryModalActive,
+    setNotificationState,
+    setNotificationStateDisabled,
+    setNotificationText,
+  } = useStore();
   const { categoryId } = useParams();
   const [categoryName, setCategoryName] = useState();
   const [products, setProducts] = useState([]);
@@ -61,6 +68,9 @@ function ProductsPage() {
         productId: productId,
         quantity: 1,
       });
+      setNotificationState();
+      setTimeout(() => setNotificationStateDisabled(), 4000);
+      setNotificationText(true, "Success purchase");
     } catch (e) {
       console.log(e);
     }
@@ -147,6 +157,7 @@ function ProductsPage() {
       <InfiniteSlide />
       <AddProductModal />
       <AddEditProductModal />
+      <Notification />
     </div>
   );
 }
