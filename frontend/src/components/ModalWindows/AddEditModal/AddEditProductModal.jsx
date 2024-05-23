@@ -27,6 +27,8 @@ function AddEditProductModal() {
         >
           <img src={CloseIcon} alt="" />
         </div>
+
+        <h2>Edit Product</h2>
       </div>
     </div>
   );

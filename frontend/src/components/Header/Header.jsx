@@ -96,7 +96,7 @@ function Header() {
           <></>
         )}
         {currentUser ? (
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", gap: "5px" }}>
             <p>
               <Link
                 to="/profile"
@@ -118,14 +118,32 @@ function Header() {
                 {currentUser.name}
               </Link>
             </p>
-            <div
+            <Link
+              to="/cart"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                textDecoration: "none",
+              }}
+            >
+              <img
+                width="25"
+                height="25"
+                src="https://img.icons8.com/sf-ultralight-filled/25/FA5252/shopping-cart.png"
+                alt="shopping-cart"
+              />
+              <p>Cart</p>
+            </Link>
+            {/* <div
               className={style.notification}
               data-content={countNotification}
             >
               <div className={style.bell_container}>
                 <div className={style.bell}></div>
               </div>
-            </div>
+            </div> */}
           </div>
         ) : (
           <></>

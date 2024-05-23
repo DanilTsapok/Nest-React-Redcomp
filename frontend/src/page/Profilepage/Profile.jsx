@@ -21,9 +21,9 @@ function Profile() {
           <p>Email:</p>
           <p>{currentUser.email}</p>
         </div>
-        <div className={style.historyOrders}>
+        {/* <div className={style.historyOrders}>
           <h1>History orders</h1>
-        </div>
+        </div> */}
       </div>
       <InfiniteSlide />
     </div>
