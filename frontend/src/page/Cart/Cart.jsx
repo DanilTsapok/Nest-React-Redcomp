@@ -47,34 +47,38 @@ function Cart() {
       <video src={video} loop autoPlay muted></video>
       <h1>Cart</h1>
       <div className={style.cartBody}>
-        {orders.length > 0 ? (
-          findUniqueOrders().map((singleOrder) => (
-            <div className={style.orderDetails} key={singleOrder.id}>
-              <h2>Order Details</h2>
-              <p>Order ID: {singleOrder.id}</p>
-              <p>
-                Order Date: {new Date(singleOrder.date).toLocaleDateString()}
-              </p>
-              <h3>Items:</h3>
-            </div>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
-        <ul>
-          {orderItems
-            // .filter((itemOrder) => itemOrder.orderId == singleOrder)
-            .map((item) => (
-              <li key={item.id}>
-                <img src={item.product.imgUrl} alt="" />
-                <p>Product ID: {item.product.id}</p>
-                <p>Order ID: {item.order.id}</p>
-                <p>Product Name: {item.product.name}</p>
-                <p>Product Price: {item.product.price}</p>
-                <p>Quantity: {item.quantity}</p>
-              </li>
-            ))}
-        </ul>
+        <div>
+          {orders.length > 0 ? (
+            findUniqueOrders().map((singleOrder) => (
+              <div className={style.orderDetails} key={singleOrder.id}>
+                <h2>Order Details</h2>
+                <p>Order ID: {singleOrder.id}</p>
+                <p>
+                  Order Date: {new Date(singleOrder.date).toLocaleDateString()}
+                </p>
+                <h3>Items:</h3>
+              </div>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+        <div className={style.cartOrderItem}>
+          <ul>
+            {orderItems
+              // .filter((itemOrder) => itemOrder.orderId == singleOrder)
+              .map((item) => (
+                <li key={item.id}>
+                  <img src={item.product.imgUrl} alt="" />
+                  <p>Product ID: {item.product.id}</p>
+                  <p>Order ID: {item.order.id}</p>
+                  <p>Product Name: {item.product.name}</p>
+                  <p>Product Price: {item.product.price}</p>
+                  <p>Quantity: {item.quantity}</p>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
       <InfiniteSlide />
     </div>
