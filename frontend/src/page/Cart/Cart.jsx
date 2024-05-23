@@ -10,7 +10,7 @@ function Cart() {
   const [orders, setOrders] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
   // console.log(orders);
-  // console.log(orderItems);
+  console.log(orderItems);
   // console.log(currentUser);
   useEffect(() => {
     const fetchOrders = async () => {
@@ -68,6 +68,19 @@ function Cart() {
     return uniqueOrders;
   };
 
+  const findUniqueOrderItem = () => {
+    const uniqueOrderItems = [];
+
+    orderItems.forEach((item) => {
+      if (item.order.id === currentUser.id) {
+        if (!uniqueOrderItems.some((uniqueItem) => uniqueItem.id === item.id)) {
+          uniqueOrderItems.push(item);
+        }
+      }
+    });
+
+    return uniqueOrderItems;
+  };
   return (
     <div className={style.CartBody}>
       <video src={video} loop autoPlay muted></video>
@@ -97,7 +110,7 @@ function Cart() {
         </div>
         <div className={style.cartOrderItem}>
           <ul>
-            {orderItems.map((item) => (
+            {findUniqueOrderItem().map((item) => (
               <li key={item.id}>
                 <img src={item.product.imgUrl} alt="" />
                 <p>Order ID: {item.order.id}</p>
