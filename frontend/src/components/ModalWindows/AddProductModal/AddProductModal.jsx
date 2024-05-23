@@ -74,12 +74,12 @@ function AddProductModal() {
         >
           <div className={style.logo}>
             <img src={Logo}></img>
-            <h1>
+            <h2>
               <span>Red</span>Comp
-            </h1>
-            {/* <div className={style.formTitle}>
-              <h1>Add Product</h1>
-            </div> */}
+            </h2>
+            <div className={style.formTitle}>
+              <h2>Add Product</h2>
+            </div>
           </div>
           <div className={style.formInfoBlock}>
             <div className={style.nameSection}>
@@ -113,7 +113,7 @@ function AddProductModal() {
                 </p>
               ) : null}
             </div>
-            <div className={style.descriptionSection}>
+            <div className={style.nameSection}>
               <input
                 type="text"
                 name="description"
@@ -141,6 +141,68 @@ function AddProductModal() {
                   }}
                 >
                   {formik.errors.description}
+                </p>
+              ) : null}
+            </div>
+            <div className={style.nameSection}>
+              <input
+                type="text"
+                name="imgUrl"
+                id="imgUrl"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.imgUrl}
+              />
+              <label
+                className={
+                  (formik.touched.imgUrl && formik.errors.imgUrl) ||
+                  formik.values.imgUrl != ""
+                    ? `${style.inputerrorlabel}`
+                    : null
+                }
+              >
+                imgUrl
+              </label>
+              {formik.touched.imgUrl && formik.errors.imgUrl ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 14,
+                    position: "relative",
+                  }}
+                >
+                  {formik.errors.imgUrl}
+                </p>
+              ) : null}
+            </div>
+            <div className={style.descriptionSection}>
+              <input
+                type="text"
+                name="price"
+                id="price"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.price}
+              />
+              <label
+                className={
+                  (formik.touched.price && formik.errors.price) ||
+                  formik.values.price != ""
+                    ? `${style.inputerrorlabel}`
+                    : null
+                }
+              >
+                Price
+              </label>
+              {formik.touched.price && formik.errors.price ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 14,
+                    position: "relative",
+                  }}
+                >
+                  {formik.errors.price}
                 </p>
               ) : null}
               <div className={style.btnLogin}>
