@@ -12,6 +12,7 @@ import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiOperation,
   ApiParam,
@@ -21,6 +22,7 @@ import {
 import { Order } from './entities/order.entity';
 
 @ApiTags('order')
+@ApiBearerAuth()
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
@@ -46,13 +48,7 @@ export class OrderController {
   @Get(':id')
   @ApiOperation({ summary: 'Get an order by ID' })
   @ApiParam({ name: 'id', description: 'ID of the order to retrieve' })
-  @ApiBody({ type: Order, description: 'Find' })
-  @ApiResponse({
-    status: 200,
-    description: 'Return the order with the given ID',
-    type: Order,
-  })
-  async findOne(@Param('id') id: string): Promise<Order> {
+  findOne(@Param('id') id: string) {
     return this.orderService.findOne(id);
   }
 

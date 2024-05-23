@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID, IsNotEmpty } from 'class-validator';
+import { IsUUID, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @ApiProperty({
@@ -8,11 +8,11 @@ export class CreateOrderDto {
   })
   @IsNotEmpty()
   @IsUUID()
-  readonly userId: string;
+  userId: string;
   @ApiProperty({
     example: '2024-05-23T00:03:57.338Z',
     description: 'Date',
   })
   @IsNotEmpty()
-  readonly date: Date;
+  date: Date;
 }

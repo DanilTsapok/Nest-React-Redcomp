@@ -4,29 +4,39 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './entities/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
-    const order = this.orderRepository.create(createOrderDto);
-    return this.orderRepository.save(order);
+    const { userId, ...orderData } = createOrderDto;
+    const user = await this.userRepository.findOneBy({
+      id: userId,
+    });
+    if (!user) {
+      throw new NotFoundException(`User with id ${userId} not found`);
+    }
+    const newOrder = this.orderRepository.create({
+      ...orderData,
+      user: user,
+    });
+    return this.orderRepository.save(newOrder);
   }
 
   async findAll(): Promise<Order[]> {
-    return this.orderRepository.find();
+    const orders = this.orderRepository.find({ relations: ['user'] });
+    return orders;
   }
 
   async findOne(id: string): Promise<Order> {
-    const order = await this.orderRepository.findOneBy({ id });
-    if (!order) {
-      throw new NotFoundException(`Order with ID ${id} not found`);
-    }
-    return order;
+    return await this.orderRepository.findOneBy({ id });
   }
 
   async update(id: string, updateOrderDto: UpdateOrderDto): Promise<Order> {
