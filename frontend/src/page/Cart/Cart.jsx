@@ -9,7 +9,9 @@ function Cart() {
   const { currentUser } = useStore();
   const [orders, setOrders] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
-
+  // console.log(orders);
+  // console.log(orderItems);
+  // console.log(currentUser);
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -30,14 +32,19 @@ function Cart() {
     }
   }, [currentUser]);
 
+  // Функція для видалення елемента замовлення
   const deleteItem = async (idOrder, idItem) => {
     try {
+      // Видалення елемента замовлення за його id
       await axios.delete(`http://localhost:4000/order-items/${idItem}`);
+      // Оновлення списку orderItems
       const updatedOrderItems = orderItems.filter((item) => item.id !== idItem);
       setOrderItems(updatedOrderItems);
 
+      // Якщо передано idOrder (тобто не null), то видаляємо відповідне замовлення
       if (idOrder) {
         await axios.delete(`http://localhost:4000/order/${idOrder}`);
+        // Оновлення списку orders
         const updatedOrders = orders.filter((order) => order.id !== idOrder);
         setOrders(updatedOrders);
       }
@@ -46,10 +53,15 @@ function Cart() {
     }
   };
 
+  // Функція для фільтрації замовлень, які належать поточному користувачеві
   const findUniqueOrders = () => {
     const uniqueOrders = [];
+    console.log(uniqueOrders);
     orders.forEach((order) => {
-      if (!uniqueOrders.find((uniqueOrder) => uniqueOrder.id === order.id)) {
+      if (
+        order.user.id === currentUser.id &&
+        !uniqueOrders.find((uniqueOrder) => uniqueOrder.id === order.id)
+      ) {
         uniqueOrders.push(order);
       }
     });
