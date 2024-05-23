@@ -31,7 +31,7 @@
   min-height: 100vh;
   padding: 120px;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   // justify-content: center;
   gap: 40px;
   min-height: 110vh;
@@ -55,4 +55,42 @@
       var(--c3) 0 180deg
     );
   background-size: var(--s) calc(var(--s) * 0.577);
+}
+.cartOrderItem {
+  width: 100%;
+  display: flex;
+  // justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    img {
+      width: 300px;
+    }
+    li {
+      padding: 10px;
+      width: 300px;
+      list-style: none;
+    }
+  }
+}
+.orderDetails {
+  width: 300px;
+  height: 120px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  gap: 20px;
+}
+.OrderBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -47,7 +47,7 @@ function Cart() {
       <video src={video} loop autoPlay muted></video>
       <h1>Cart</h1>
       <div className={style.cartBody}>
-        <div>
+        <div className={style.OrderBody}>
           {orders.length > 0 ? (
             findUniqueOrders().map((singleOrder) => (
               <div className={style.orderDetails} key={singleOrder.id}>
@@ -56,7 +56,7 @@ function Cart() {
                 <p>
                   Order Date: {new Date(singleOrder.date).toLocaleDateString()}
                 </p>
-                <h3>Items:</h3>
+                <button>Delete</button>
               </div>
             ))
           ) : (
@@ -70,10 +70,10 @@ function Cart() {
               .map((item) => (
                 <li key={item.id}>
                   <img src={item.product.imgUrl} alt="" />
-                  <p>Product ID: {item.product.id}</p>
                   <p>Order ID: {item.order.id}</p>
+                  {/* <p>Product ID: {item.product.id}</p> */}
                   <p>Product Name: {item.product.name}</p>
-                  <p>Product Price: {item.product.price}</p>
+                  <p>Product Price: {item.product.price} UAH</p>
                   <p>Quantity: {item.quantity}</p>
                 </li>
               ))}
