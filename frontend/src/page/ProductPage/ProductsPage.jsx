@@ -100,7 +100,9 @@ function ProductsPage() {
                           alt="trash"
                         />
                       </button>
-                      <button onClick={() => setEditCategoryModalActive()}>
+                      <button
+                        onClick={() => setEditCategoryModalActive(productsItem)}
+                      >
                         <img
                           width="25"
                           height="25"

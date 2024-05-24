@@ -26,7 +26,9 @@ const useStore = create((set) => ({
   setAddProductModalDisActive: () => set({ addProductModalActive: false }),
 
   addEditCategoryModalActive: false,
-  setEditCategoryModalActive: () => set({ addEditCategoryModalActive: true }),
+  selectedProduct: [],
+  setEditCategoryModalActive: (state) =>
+    set({ addEditCategoryModalActive: true, selectedProduct: state }),
   setEditCategoryModalDisActive: () =>
     set({ addEditCategoryModalActive: false }),
 
